@@ -36,8 +36,11 @@ public class CurseForgeClient(string apiKey, HttpClient? httpClient = null)
         var stringBuilder = new StringBuilder(BaseUrl)
             .Append($"mods/search?gameId={MinecraftGameId}")
             .Append($"&sortField=2")
-            .Append($"&categoryId={categoryId}")
+            //.Append($"&categoryId={categoryId}")
             .Append($"&sortOrder=desc");
+
+        if (categoryId != 0)
+            stringBuilder.Append($"&categoryId={categoryId}");
 
         if (resourceType is not null)
             stringBuilder.Append($"&classId={(int)resourceType}");
